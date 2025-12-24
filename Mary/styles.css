@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
 }
@@ -10,7 +11,14 @@
 }
 @font-face {
   font-family: 'danstevis';
-  src: url('danstevis.otf') format('opentype');
+  src: url('Derakhshandeh.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rastin';
+  src: url('Rastin.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -374,6 +382,9 @@ background-color: #1C1C51;}
       background-color: #d4d1d0;
       background-image: url('https://www.dropbox.com/s/8hw7guch8d151kg/pattern.png?raw=1');
       background-repeat: repeat;
+      font-family: 'danstevis';
+      font-size: 50px;
+      font-style: italic;
       border: 20px solid #d4d1d0;
       display: flex;
       flex-direction: column;
@@ -550,7 +561,8 @@ background-color: #1C1C51;}
   }
 
   select {
-    min-width: 400px;
+    min-width: 330px;
+    font-family: 'Sarvenaz';
     padding: 10px;
     border-radius: 8px;
     min-height: 58px;
@@ -618,14 +630,14 @@ background-color: #1C1C51;}
 
   .thecat {
     z-index: 2;
-    margin-left: 214px;
+    margin-left: 145px;
     margin-bottom: -70px;
     position: relative;
     pointer-events: none;
   }
 }
 .side-select{
-  font-family: 'Sarvenaz';
+  
 }
 #tail {
   visibility: visible;
@@ -750,8 +762,8 @@ option {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-family: 'danstevis';
-  font-size: 19px;
+  font-family: 'Rastin';
+  font-size: 13px;
   resize: vertical;
   background-color: white;
   transition: background-color 0.3s;
@@ -770,14 +782,14 @@ option {
 }
 
 #submitButton {
-    font-family: 'danstevis';
+    font-family: 'Rastin';
 
   background-color: green;
   color: white;
 }
 
 #cancelButton {
-    font-family: 'danstevis';
+    font-family: 'Rastin';
 
   background-color: red;
   color: white;
@@ -798,6 +810,7 @@ option {
 
 .modal-content {
   background-color: #fefefe;
+  font-family: 'Rastin';
   z-index: 10000;
   margin: 15% auto;
   padding: 20px;
@@ -840,4 +853,7 @@ option {
     opacity: 0;
     transform: translateY(-60px) scale(1.5);
   }
+}
+.p{
+  margin: 0;
 }
