@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Tree Mobile</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background: hsl(210, 32%, 20%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+      overflow: hidden;
+    }
+
+    /* ===== SCALE WRAPPER (FIX SIZE) ===== */
+    .tree-scale {
+      transform: scale(1);
+    }
+
+    @media (max-width: 600px) {
+      .tree-scale {
+        transform: scale(1.7);
+      }
+    }
+
+    /* ===== TREE ROTATION ONLY ===== */
+    .tree {
+      position: relative;
+      height: 65vmin;
+      width: 25vmin;
+      transform-style: preserve-3d;
+      animation: spin 6s linear infinite;
+    }
+
+    /* ===== LIGHTS ===== */
+    .tree__light {
+      position: absolute;
+      width: 1vmin;
+      height: 1vmin;
+      border-radius: 50%;
+      left: 50%;
+      bottom: calc(var(--y) * 1%);
+      transform-style: preserve-3d;
+      transform:
+        translate(-50%, 50%)
+        rotateY(calc(var(--rotate) * 1deg))
+        translateZ(calc(var(--radius) * 1vmin));
+
+      animation:
+        flash calc(var(--speed) * 1s) calc(var(--delay) * 1s) infinite,
+        appear 0.5s calc(var(--appear) * 0.05s) both;
+    }
+
+    /* ===== STAR ===== */
+    .tree__star {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      width: 5vmin;
+      height: 5vmin;
+      transform: translateX(-50%);
+      fill: none;
+      stroke: hsl(45, 80%, 80%);
+      stroke-width: 6;
+      filter: drop-shadow(0 0 2vmin hsl(45, 90%, 90%));
+      stroke-dasharray: 1000;
+      stroke-dashoffset: -1000;
+      animation: stroke 1s 2.5s both;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes spin {
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+      }
+    }
+
+    @keyframes flash {
+      0%, 100% {
+        background: red;
+        box-shadow: 0 0 0 transparent;
+      }
+      50% {
+        background: white;
+        box-shadow: 0 0 1vmin white;
+      }
+    }
+
+    @keyframes stroke {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="tree-scale">
+    <div class="tree" id="tree">
+      <svg class="tree__star" viewBox="0 0 113.32 108.44">
+        <path d="M90.19 104.33L57.12 87.38 24.4 105l5.91-36.69L3.44 42.65l36.72-5.72 16.1-33.5L73.06 36.6l36.83 4.97-26.35 26.21z"/>
+      </svg>
+    </div>
+  </div>
+
+  <script>
+  const LIGHTS = 50;
+  const tree = document.getElementById("tree");
+
+  for (let l = 0; l < LIGHTS; l++) {
+    const light = document.createElement("div");
+    light.className = "tree__light";
+
+    const inv = LIGHTS - l;
+
+    light.style.setProperty("--rotate", (1440 / LIGHTS) * inv);
+    light.style.setProperty("--radius", (12.5 / LIGHTS) * inv);
+    light.style.setProperty("--y", (100 / LIGHTS) * l);
+    light.style.setProperty("--speed", Math.random() * 10);
+    light.style.setProperty("--delay", -Math.random() * 10);
+    light.style.setProperty("--appear", l);
+
+    tree.appendChild(light);
+  }
+
+  /* ===== REDIRECT AFTER TREE COMPLETE ===== */
+  const totalTime =
+    (LIGHTS * 0.05 + 0.6) * 1030; // ms
+
+  setTimeout(() => {
+    window.location.href = "Index.html";
+  }, totalTime);
+</script>
+
+
+</body>
+</html>
